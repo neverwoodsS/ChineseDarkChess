@@ -12,6 +12,11 @@ abstract class Role {
 
   void setLocation(Location location) => this.location = location;
 
+  /// 综合判定是否能吃子
+  /// 包含：
+  /// 1.目标是否翻开
+  /// 2.目标是否是同一阵营
+  /// 3.打不打得过
   bool canEat(Role another, Game game) {
     // 还没翻开的棋子
     if (another.hide) return false;
@@ -19,7 +24,7 @@ abstract class Role {
     // 同一阵营
     if (side == another.side) return false;
 
-    // 力量小于对方
+    // 打不过对方
     if (!_canWin(another)) return false;
 
     // 可移动到对方的位置
@@ -29,6 +34,7 @@ abstract class Role {
     return true;
   }
 
+  /// 仅判断是否打的过
   bool _canWin(Role another) => power >= another.power;
 }
 
