@@ -39,15 +39,17 @@ abstract class Role {
     // 打不过对方
     if (!_canWin(another)) return false;
 
-    // 可移动到对方的位置
-    var distance = (location.x - another.location.x).abs() + (location.y - another.location.y).abs();
-    if (distance > 1) return false;
+    // 不能移动到对方的位置
+    if (!_canMove(another.location)) return false;
 
     return true;
   }
 
   /// 仅判断是否打的过
   bool _canWin(Role another) => _power >= another._power;
+
+  /// 仅判断是否能移动到指定位置
+  bool _canMove(Location anotherLocation) => (location.x - anotherLocation.x).abs() + (location.y - anotherLocation.y).abs() == 1;
 }
 
 class Pawn extends Role {
@@ -96,6 +98,10 @@ class Turret extends Role {
 
     return true;
   }
+
+  /// 炮塔不吃子不能动
+  @override
+  bool _canMove(Location anotherLocation) => false;
 }
 
 class Knight extends Role {
