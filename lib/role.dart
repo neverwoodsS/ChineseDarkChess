@@ -12,7 +12,7 @@ abstract class Role {
   bool side;
 
   /// 战斗力
-  int power;
+  int _power;
 
   /// 棋子所属位置
   Location location;
@@ -47,12 +47,12 @@ abstract class Role {
   }
 
   /// 仅判断是否打的过
-  bool _canWin(Role another) => power >= another.power;
+  bool _canWin(Role another) => _power >= another._power;
 }
 
 class Pawn extends Role {
   @override
-  final int power = 1;
+  final int _power = 1;
 
   @override
   final String labelBlack = '卒';
@@ -63,13 +63,13 @@ class Pawn extends Role {
   @override
   bool _canWin(Role another) {
     // 通过取7的余数，可以实现除了将帅(7)谁都打不过的效果
-    return power % 7 >= another.power % 7;
+    return _power % 7 >= another._power % 7;
   }
 }
 
 class Turret extends Role {
   @override
-  final int power = 2;
+  final int _power = 2;
 
   @override
   final String labelBlack = '砲';
@@ -100,7 +100,7 @@ class Turret extends Role {
 
 class Knight extends Role {
   @override
-  final int power = 3;
+  final int _power = 3;
 
   @override
   final String labelBlack = '傌';
@@ -111,7 +111,7 @@ class Knight extends Role {
 
 class Castle extends Role {
   @override
-  final int power = 4;
+  final int _power = 4;
 
   @override
   final String labelBlack = '俥';
@@ -122,7 +122,7 @@ class Castle extends Role {
 
 class Bishop extends Role {
   @override
-  final int power = 5;
+  final int _power = 5;
 
   @override
   final String labelBlack = '象';
@@ -133,7 +133,7 @@ class Bishop extends Role {
 
 class Guard extends Role {
   @override
-  final int power = 6;
+  final int _power = 6;
 
   @override
   final String labelBlack = '仕';
@@ -144,7 +144,7 @@ class Guard extends Role {
 
 class King extends Role {
   @override
-  final int power = 7;
+  final int _power = 7;
 
   @override
   final String labelBlack = '将';
@@ -154,5 +154,5 @@ class King extends Role {
 
   /// 除了兵卒(1)，谁都打的过
   @override
-  bool _canWin(Role another) => another.power != 1;
+  bool _canWin(Role another) => another._power != 1;
 }
