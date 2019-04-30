@@ -28,6 +28,7 @@ abstract class Role {
   /// 1.目标是否翻开
   /// 2.目标是否是同一阵营
   /// 3.打不打得过
+  /// 4.能否移动到目标位置
   bool canEat(Role another, Game game) {
     // 还没翻开的棋子
     if (another.hide) return false;
