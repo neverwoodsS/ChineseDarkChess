@@ -2,15 +2,26 @@ import 'package:chinese_dark_chess/game.dart';
 import 'package:chinese_dark_chess/location.dart';
 
 abstract class Role {
+
+  /// 是否已经翻开
+  /// true 没翻开
+  /// false 已翻开
   bool hide = true;
+
+  /// 所属阵营 true or false
   bool side;
+
+  /// 战斗力
   int power;
+
+  /// 棋子所属位置
   Location location;
 
+  /// 棋子在黑方的名字
   String labelBlack;
-  String labelRed;
 
-  void setLocation(Location location) => this.location = location;
+  /// 棋子在红方的名字
+  String labelRed;
 
   /// 综合判定是否能吃子
   /// 包含：
@@ -50,6 +61,7 @@ class Pawn extends Role {
 
   @override
   bool _canWin(Role another) {
+    // 通过取7的余数，可以实现除了将帅(7)谁都打不过的效果
     return power % 7 >= another.power % 7;
   }
 }
@@ -139,6 +151,7 @@ class King extends Role {
   @override
   final String labelRed = '帅';
 
+  /// 除了兵卒(1)，谁都打的过
   @override
   bool _canWin(Role another) => another.power != 1;
 }
