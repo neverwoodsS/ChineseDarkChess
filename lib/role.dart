@@ -50,6 +50,8 @@ abstract class Role {
 
   /// 仅判断是否能移动到指定位置
   bool _canMove(Location anotherLocation) => (location.x - anotherLocation.x).abs() + (location.y - anotherLocation.y).abs() == 1;
+
+  String getLabel() => side ? labelRed : labelBlack;
 }
 
 class Pawn extends Role {

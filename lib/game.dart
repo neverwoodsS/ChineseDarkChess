@@ -1,7 +1,41 @@
+import 'dart:math';
+
 import 'package:chinese_dark_chess/location.dart';
+import 'package:chinese_dark_chess/mode.dart';
 import 'package:chinese_dark_chess/role.dart';
 
 class Game {
+
+  static Game shuffle(Mode mode) {
+    List<Role> roles = [];
+
+    for (bool side in [false, true]) {
+      for (int i = 0; i < 5; i++) {
+        roles.add(Pawn()..side = side);
+      }
+
+      roles.add(Castle()..side = side);
+      roles.add(Castle()..side = side);
+
+      roles.add(Knight()..side = side);
+      roles.add(Knight()..side = side);
+
+      roles.add(Turret()..side = side);
+      roles.add(Turret()..side = side);
+
+      roles.add(Bishop()..side = side);
+      roles.add(Bishop()..side = side);
+
+      roles.add(Guard()..side = side);
+      roles.add(Guard()..side = side);
+
+      roles.add(King()..side = side);
+    }
+
+    roles.shuffle(Random());
+
+    return Game()..insertRolesAndHide(roles);
+  }
 
   /// 0 普通模式
   /// 1 暗杀模式
@@ -17,6 +51,19 @@ class Game {
     [null, null, null, null],
     [null, null, null, null],
   ];
+
+  void insertRolesAndHide(List<Role> roles) {
+    assert(roles.length == 32);
+    for (int i = 0; i < roles.length; i++) {
+      Role role = roles[i];
+      int x = i % 8;
+      int y = i ~/ 8;
+      this.roles[x][y] = role
+        ..hide = true
+        ..location = Location(x, y)
+      ;
+    }
+  }
 
   List<Role> _getRolesByX(int x) {
     List<Role> res = List(4);
