@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:chinese_dark_chess/location.dart';
-import 'package:chinese_dark_chess/mode.dart';
-import 'package:chinese_dark_chess/role.dart';
+import 'package:chinese_dark_chess/game/location.dart';
+import 'package:chinese_dark_chess/game/mode.dart';
+import 'package:chinese_dark_chess/game/role.dart';
 
 class Game {
 

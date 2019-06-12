@@ -1,5 +1,5 @@
-import 'package:chinese_dark_chess/game.dart';
-import 'package:chinese_dark_chess/location.dart';
+import 'package:chinese_dark_chess/game/game.dart';
+import 'package:chinese_dark_chess/game/location.dart';
 
 abstract class Role {
 
