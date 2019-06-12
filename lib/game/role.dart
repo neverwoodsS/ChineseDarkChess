@@ -1,5 +1,6 @@
 import 'package:chinese_dark_chess/game/game.dart';
 import 'package:chinese_dark_chess/game/location.dart';
+import 'package:chinese_dark_chess/game/mode.dart';
 
 abstract class Role {
 
@@ -84,7 +85,7 @@ class Turret extends Role {
   @override
   bool canEat(Role another, Game game) {
     // 暗杀模式
-    if (game.rule == 1) {
+    if (game.mode == Mode.KILL) {
       // 此模式下只有翻开的，且是同阵营的不能攻击
       if (!another.hide && side == another.side) return false;
     }

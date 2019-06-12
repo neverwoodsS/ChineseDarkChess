@@ -10,9 +10,11 @@ class Game {
     List<Role> roles = [];
 
     for (bool side in [false, true]) {
-      for (int i = 0; i < 5; i++) {
-        roles.add(Pawn()..side = side);
-      }
+      roles.add(Pawn()..side = side);
+      roles.add(Pawn()..side = side);
+      roles.add(Pawn()..side = side);
+      roles.add(Pawn()..side = side);
+      roles.add(Pawn()..side = side);
 
       roles.add(Castle()..side = side);
       roles.add(Castle()..side = side);
@@ -34,12 +36,13 @@ class Game {
 
     roles.shuffle(Random());
 
-    return Game()..insertRolesAndHide(roles);
+    return Game()
+      ..insertRolesAndHide(roles)
+      ..mode = mode
+    ;
   }
 
-  /// 0 普通模式
-  /// 1 暗杀模式
-  var rule = 0;
+  var mode = Mode.NORMAL;
 
   List<List<Role>> roles = [
     [null, null, null, null],
