@@ -1,7 +1,7 @@
-import 'package:chinese_dark_chess/game/game.dart';
-import 'package:chinese_dark_chess/game/location.dart';
-import 'package:chinese_dark_chess/game/mode.dart';
-import 'package:chinese_dark_chess/game/role.dart';
+import 'package:chinese_dark_chess/deprecated/game.dart';
+import 'package:chinese_dark_chess/deprecated/location.dart';
+import 'package:chinese_dark_chess/deprecated/mode.dart';
+import 'package:chinese_dark_chess/deprecated/role.dart';
 
 void main() {
   Game game = Game.shuffle(Mode.NORMAL);
