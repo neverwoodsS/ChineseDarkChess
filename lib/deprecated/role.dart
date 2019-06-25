@@ -1,6 +1,6 @@
-import 'package:chinese_dark_chess/deprecated/game.dart';
-import 'package:chinese_dark_chess/deprecated/location.dart';
-import 'package:chinese_dark_chess/deprecated/mode.dart';
+import 'package:ttk_chess/deprecated/game.dart';
+import 'package:ttk_chess/game/location.dart';
+import 'package:ttk_chess/deprecated/mode.dart';
 
 abstract class Role {
 

@@ -1,8 +1,7 @@
 import 'dart:math';
-
-import 'package:chinese_dark_chess/deprecated/location.dart';
-import 'package:chinese_dark_chess/deprecated/mode.dart';
-import 'package:chinese_dark_chess/deprecated/role.dart';
+import 'mode.dart';
+import 'package:ttk_chess/deprecated/role.dart';
+import 'package:ttk_chess/game/location.dart';
 
 class Game {
 
