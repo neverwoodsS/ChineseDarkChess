@@ -1,6 +1,6 @@
 part of role;
 
-class Chariot extends Role {
+class Rook extends Role {
   @override
   get res => "车";
 

@@ -51,10 +51,10 @@ testRoute() {
   assert(null != soldier.routeTo(Location(0, 1)));
   assert(null != soldier.routeTo(Location(1, 0)));
 
-  var chariot = Chariot()
+  var rook = Rook()
     ..location = Location(0, 0)
   ;
-  assert(3 == chariot.routeTo(Location(4, 0)).length);
-  assert(5 == chariot.routeTo(Location(0, 6)).length);
-  assert(null == chariot.routeTo(Location(1, 1)));
+  assert(3 == rook.routeTo(Location(4, 0)).length);
+  assert(5 == rook.routeTo(Location(0, 6)).length);
+  assert(null == rook.routeTo(Location(1, 1)));
 }

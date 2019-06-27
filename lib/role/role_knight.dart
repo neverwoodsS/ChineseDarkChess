@@ -1,6 +1,6 @@
 part of role;
 
-class Cavalry extends Role {
+class Knight extends Role {
   @override
   get res => "马";
 

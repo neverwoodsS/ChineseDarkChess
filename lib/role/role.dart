@@ -5,8 +5,11 @@ import 'package:ttk_chess/game/location.dart';
 
 part 'role_soldier.dart';
 part 'role_king.dart';
-part 'role_chariot.dart';
-part 'role_cavalry.dart';
+part 'role_rook.dart';
+part 'role_knight.dart';
+part 'role_minister.dart';
+part 'role_guard.dart';
+part 'role_cannon.dart';
 
 abstract class Role {
   /// 可以是文字，也可以是图片资源
@@ -15,7 +18,7 @@ abstract class Role {
 
   Kingdom kingdom;
   Location location;
-  int acceptableBlockCount = 0;
+  final acceptableBlockCount = 0;
 
   bool canMoveTo(Location targetLocation);
 
