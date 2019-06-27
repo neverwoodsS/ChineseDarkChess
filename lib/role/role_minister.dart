@@ -5,7 +5,7 @@ class Minister extends Role {
   get res => "相";
 
   @override
-  bool canMoveTo(Location targetLocation) {
+  bool _canMoveTo(Location targetLocation) {
     var deltaX = targetLocation.x - location.x;
     var deltaY = targetLocation.y - location.y;
     return deltaX.abs() == deltaY.abs() && deltaX.abs() == 2;
@@ -13,7 +13,7 @@ class Minister extends Role {
 
   @override
   List<Location> routeTo(Location targetLocation) {
-    if (canMoveTo(targetLocation)) {
+    if (_canMoveTo(targetLocation)) {
       return [Location((targetLocation.x + location.x) ~/ 2, (targetLocation.y + location.y) ~/ 2)];
     }
     return null;

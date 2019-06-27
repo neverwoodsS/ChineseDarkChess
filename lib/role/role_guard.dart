@@ -5,7 +5,7 @@ class Guard extends Role {
   get res => "士";
 
   @override
-  bool canMoveTo(Location targetLocation) {
+  bool _canMoveTo(Location targetLocation) {
     var deltaX = targetLocation.x - location.x;
     var deltaY = targetLocation.y - location.y;
     return deltaX.abs() == deltaY.abs() && deltaX.abs() == 1;
@@ -13,5 +13,5 @@ class Guard extends Role {
 
   @override
   List<Location> routeTo(Location targetLocation) =>
-      canMoveTo(targetLocation) ? [] : null;
+      _canMoveTo(targetLocation) ? [] : null;
 }

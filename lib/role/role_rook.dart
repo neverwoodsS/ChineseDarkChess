@@ -5,7 +5,7 @@ class Rook extends Role {
   get res => "车";
 
   @override
-  bool canMoveTo(Location targetLocation) {
+  bool _canMoveTo(Location targetLocation) {
     var deltaX = targetLocation.x - location.x;
     var deltaY = targetLocation.y - location.y;
     return deltaX * deltaY == 0 && deltaX + deltaY != 0;
@@ -13,7 +13,7 @@ class Rook extends Role {
 
   @override
   List<Location> routeTo(Location targetLocation) {
-    if (canMoveTo(targetLocation)) {
+    if (_canMoveTo(targetLocation)) {
       List<Location> result = [];
 
       var deltaX = targetLocation.x - location.x;

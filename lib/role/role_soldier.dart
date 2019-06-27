@@ -5,12 +5,12 @@ class Soldier extends Role {
   get res => "兵";
 
   @override
-  bool canMoveTo(Location targetLocation) {
+  bool _canMoveTo(Location targetLocation) {
     var distance = targetLocation.x - location.x + targetLocation.y - location.y;
     return distance.abs() == 1;
   }
 
   @override
   List<Location> routeTo(Location targetLocation) =>
-      canMoveTo(targetLocation) ? [] : null;
+      _canMoveTo(targetLocation) ? [] : null;
 }

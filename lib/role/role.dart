@@ -20,7 +20,7 @@ abstract class Role {
   Location location;
   final acceptableBlockCount = 0;
 
-  bool canMoveTo(Location targetLocation);
+  bool _canMoveTo(Location targetLocation);
 
   /// 返回 null 则为不可达
   /// 非 null 则可达，但仍需其他检查

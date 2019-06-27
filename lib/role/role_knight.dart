@@ -5,14 +5,14 @@ class Knight extends Role {
   get res => "马";
 
   @override
-  bool canMoveTo(Location targetLocation) {
+  bool _canMoveTo(Location targetLocation) {
     var area = (targetLocation.x - location.x) * (targetLocation.y - location.y);
     return area.abs() == 2;
   }
 
   @override
   List<Location> routeTo(Location targetLocation) {
-    if (canMoveTo(targetLocation)) {
+    if (_canMoveTo(targetLocation)) {
       List<Location> result = [];
 
       var deltaX = targetLocation.x - location.x;
