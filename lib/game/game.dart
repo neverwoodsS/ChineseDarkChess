@@ -1,12 +1,11 @@
+import 'battle_field.dart';
 import 'intersection.dart';
 import 'location.dart';
 
 class Game {
 
-  static final _battleFieldSize = 17;
-
   List<List<Intersection>> _sections =
-      List.generate(_battleFieldSize, (x) => List.generate(_battleFieldSize, (y) => Intersection(x, y)));
+      List.generate(BattleField.SIZE, (x) => List.generate(BattleField.SIZE, (y) => Intersection(x, y)));
 
   Game();
 
