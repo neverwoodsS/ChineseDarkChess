@@ -1,9 +1,11 @@
 
+import 'package:ttk_chess/game/game.dart';
 import 'package:ttk_chess/game/location.dart';
 import 'package:ttk_chess/role/role.dart';
 
 void main() {
   testRoute();
+  testGame();
 }
 
 testRoute() {
@@ -71,4 +73,8 @@ testRoute() {
   assert(null == cannon.routeTo(Location(1, 1)));
   assert(6 == cannon.routeTo(Location(7, 0)).length);
   assert(8 == cannon.routeTo(Location(0, 9)).length);
+}
+
+testGame() {
+
 }

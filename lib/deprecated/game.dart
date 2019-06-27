@@ -51,7 +51,6 @@ class Game {
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
-    [null, null, null, null],
   ];
 
   void insertRolesAndHide(List<Role> roles) {
