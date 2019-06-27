@@ -1,13 +1,4 @@
-import 'location.dart';
-import 'role.dart';
-
-abstract class Kingdom {
-  String kingdomName;
-  int color;
-  List<Role> roles;
-
-  bool canRoleMoveTo(Role role, Location location);
-}
+part of kingdom;
 
 class Wei extends Kingdom {
   @override String kingdomName = "魏";

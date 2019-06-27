@@ -1,6 +1,6 @@
 
 import 'package:ttk_chess/game/location.dart';
-import 'package:ttk_chess/game/role.dart';
+import 'package:ttk_chess/role/role.dart';
 
 void main() {
 //  Game game = Game.shuffle(Mode.NORMAL);
