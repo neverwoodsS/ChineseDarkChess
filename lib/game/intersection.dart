@@ -3,8 +3,8 @@ import 'battlefield.dart';
 
 class Intersection {
 
-  static const _MIN = BattleField.DESERT;
-  static const _MAX = BattleField.SIZE - BattleField.DESERT - 1;
+  static const _MIN = Battlefield.DESERT;
+  static const _MAX = Battlefield.SIZE - Battlefield.DESERT - 1;
 
   final int x, y;
   Role role;
