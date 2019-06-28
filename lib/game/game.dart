@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:ttk_chess/control/control.dart';
 import 'package:ttk_chess/kingdom/kingdom.dart';
 import 'battlefield.dart';
@@ -19,16 +18,13 @@ class Game {
   Control _wuControl;
 
   Game() {
-    _battlefield = Battlefield();
-
-    theMovingKingdom = _wu;
-
     _initKingdoms();
+    _initBattlefield();
     _initControls();
 
-    _startControl(_weiControl);
-    _startControl(_shuControl);
-    _startControl(_wuControl);
+    _startWeiControl();
+    _startShuControl();
+    _startWuControl();
   }
 
   clickOnLocation(Location location) {
@@ -40,20 +36,19 @@ class Game {
 
   int countBlockOfRoute(List<Location> route) => _battlefield.countBlockOfRoute(route);
 
-  turnToNextKingdom() {
-    if (theMovingKingdom == _wei) {
-      theMovingKingdom = _shu;
-    } else if (theMovingKingdom == _shu) {
-      theMovingKingdom = _wu;
-    } else if (theMovingKingdom == _wu) {
-      theMovingKingdom = _wei;
-    }
-  }
-
   _initKingdoms() {
     _wei = Wei()..game = this;
     _shu = Shu()..game = this;
     _wu = Wu()..game = this;
+
+    theMovingKingdom = _shu;
+  }
+
+  _initBattlefield() {
+    _battlefield = Battlefield();
+    _battlefield.addRoles(_wei.roles);
+    _battlefield.addRoles(_shu.roles);
+    _battlefield.addRoles(_wu.roles);
   }
 
   _initControls() {
@@ -62,16 +57,56 @@ class Game {
     _wuControl = Waiting(_wu);
   }
 
-  _startControl(Control control) async {
-    control.movingKingdomChange(theMovingKingdom);
+  _startWeiControl() async {
+    _weiControl.movingKingdomChange(theMovingKingdom);
     while (true) {
-      control = await control.process();
-      print("control kingdom = ${control.kingdom.kingdomName}, control type = ${control.toString()}");
-      if (control is Submit) {
+      _weiControl = await _weiControl.process();
+      print("control kingdom = ${_weiControl.kingdom.kingdomName}, control type = ${_weiControl.toString()}");
+      if (_weiControl is Submit) {
         // todo 判断吃子等逻辑
         // 切换到下一位
-        turnToNextKingdom();
+        _turnToNextKingdom();
       }
     }
+  }
+
+  _startShuControl() async {
+    _shuControl.movingKingdomChange(theMovingKingdom);
+    while (true) {
+      _shuControl = await _shuControl.process();
+      print("control kingdom = ${_shuControl.kingdom.kingdomName}, control type = ${_shuControl.toString()}");
+      if (_shuControl is Submit) {
+        // todo 判断吃子等逻辑
+        // 切换到下一位
+        _turnToNextKingdom();
+      }
+    }
+  }
+
+  _startWuControl() async {
+    _wuControl.movingKingdomChange(theMovingKingdom);
+    while (true) {
+      _wuControl = await _wuControl.process();
+      print("control kingdom = ${_wuControl.kingdom.kingdomName}, control type = ${_wuControl.toString()}");
+      if (_wuControl is Submit) {
+        // todo 判断吃子等逻辑
+        // 切换到下一位
+        _turnToNextKingdom();
+      }
+    }
+  }
+
+  _turnToNextKingdom() {
+    if (theMovingKingdom == _wei) {
+      theMovingKingdom = _shu;
+    } else if (theMovingKingdom == _shu) {
+      theMovingKingdom = _wu;
+    } else if (theMovingKingdom == _wu) {
+      theMovingKingdom = _wei;
+    }
+
+    _weiControl.movingKingdomChange(theMovingKingdom);
+    _shuControl.movingKingdomChange(theMovingKingdom);
+    _wuControl.movingKingdomChange(theMovingKingdom);
   }
 }

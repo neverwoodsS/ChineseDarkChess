@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:ttk_chess/game/game.dart';
 import 'package:ttk_chess/game/location.dart';
 import 'package:ttk_chess/role/role.dart';
@@ -78,5 +80,9 @@ testRoute() {
 testGame() async {
   Game game = Game();
 
+  await Future.delayed(const Duration(seconds: 2), () => "2");
+  game.clickOnLocation(Location(11, 14));
 
+  await Future.delayed(const Duration(seconds: 2), () => "2");
+  game.clickOnLocation(Location(11, 0));
 }

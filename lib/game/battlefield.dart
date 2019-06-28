@@ -1,3 +1,4 @@
+import 'package:ttk_chess/role/role.dart';
 import 'intersection.dart';
 import 'location.dart';
 
@@ -7,6 +8,12 @@ class Battlefield {
 
   List<List<Intersection>> _sections =
       List.generate(SIZE, (x) => List.generate(SIZE, (y) => Intersection(x, y)));
+
+  void addRoles(List<Role> roles) {
+    roles.forEach((role) {
+      _sections[role.location.x][role.location.y].role = role;
+    });
+  }
 
   int countBlockOfRoute(List<Location> route) {
     var result = 0;

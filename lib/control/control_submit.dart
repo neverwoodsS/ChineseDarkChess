@@ -12,8 +12,7 @@ class Submit extends Control {
   void movingKingdomChange(Kingdom movingKingdom) {}
 
   @override
-  Future<Control> process() {
-    // TODO: implement process
-    return null;
+  Future<Control> process() async {
+    return Waiting(kingdom);
   }
 }
