@@ -17,4 +17,8 @@ class Battlefield {
     });
     return result;
   }
+
+  Intersection getIntersection(int x, int y) {
+    return _sections[x][y];
+  }
 }

@@ -1,8 +1,8 @@
 part of kingdom;
 
-class Wei extends Kingdom {
-  @override String kingdomName = "魏";
-  @override int color = 0xff0000;
+class Shu extends Kingdom {
+  @override String kingdomName = "蜀";
+  @override int color = 0x00ff00;
 
   @override
   bool canRoleMoveTo(Role role, Location location) {
