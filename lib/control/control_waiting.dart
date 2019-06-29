@@ -2,7 +2,7 @@ part of control;
 
 class Waiting extends Control {
 
-  Waiting(Kingdom kingdom) : super(kingdom);
+  Waiting(Kingdom kingdom, Game game) : super(kingdom, game);
 
   @override
   void clickAtIntersection(Intersection intersection) {}
@@ -15,8 +15,8 @@ class Waiting extends Control {
   @override
   Future<Control> process() async {
     while (_lock) {
-      await Future.delayed(const Duration(milliseconds: 10), () => "10");
+      await _delay();
     }
-    return Thinking(kingdom);
+    return Thinking(kingdom, game);
   }
 }

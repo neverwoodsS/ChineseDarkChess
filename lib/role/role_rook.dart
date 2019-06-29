@@ -21,12 +21,12 @@ class Rook extends Role {
       if (deltaX == 0) {
         var unit = deltaY > 0 ? 1 : -1;
         for (var y = location.y; targetLocation.y - y != unit; y += unit) {
-          result.add(Location(location.x, y));
+          result.add(Location(location.x, y + unit));
         }
       } else {
         var unit = deltaX > 0 ? 1 : -1;
         for (var x = location.x; targetLocation.x - x != unit; x += unit) {
-          result.add(Location(x, location.y));
+          result.add(Location(x + unit, location.y));
         }
       }
 

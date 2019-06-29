@@ -3,7 +3,7 @@ part of control;
 class Submit extends Control {
   Intersection from, to;
 
-  Submit(Kingdom kingdom, this.from, this.to) : super(kingdom);
+  Submit(Kingdom kingdom, Game game, this.from, this.to) : super(kingdom, game);
 
   @override
   void clickAtIntersection(Intersection intersection) {}
@@ -13,6 +13,6 @@ class Submit extends Control {
 
   @override
   Future<Control> process() async {
-    return Waiting(kingdom);
+    return Waiting(kingdom, game);
   }
 }

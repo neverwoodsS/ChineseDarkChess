@@ -1,5 +1,6 @@
 import 'package:ttk_chess/control/control.dart';
 import 'package:ttk_chess/kingdom/kingdom.dart';
+import 'package:ttk_chess/role/role.dart';
 import 'battlefield.dart';
 import 'location.dart';
 
@@ -52,9 +53,9 @@ class Game {
   }
 
   _initControls() {
-    _weiControl = Waiting(_wei);
-    _shuControl = Waiting(_shu);
-    _wuControl = Waiting(_wu);
+    _weiControl = Waiting(_wei, this);
+    _shuControl = Waiting(_shu, this);
+    _wuControl = Waiting(_wu, this);
   }
 
   _startWeiControl() async {

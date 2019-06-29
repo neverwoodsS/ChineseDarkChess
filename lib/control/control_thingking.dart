@@ -3,7 +3,7 @@ part of control;
 class Thinking extends Control {
   Intersection _clickedIntersection;
 
-  Thinking(Kingdom kingdom) : super(kingdom);
+  Thinking(Kingdom kingdom, Game game) : super(kingdom, game);
 
   @override
   void clickAtIntersection(Intersection intersection) {
@@ -18,8 +18,8 @@ class Thinking extends Control {
   @override
   Future<Control> process() async {
     while (_lock) {
-      await Future.delayed(const Duration(milliseconds: 10), () => "10");
+      await _delay();
     }
-    return Picked(kingdom, _clickedIntersection);
+    return Picked(kingdom, game, _clickedIntersection);
   }
 }

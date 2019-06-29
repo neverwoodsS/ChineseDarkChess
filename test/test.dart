@@ -113,5 +113,5 @@ testGame() async {
   game.clickOnLocation(Location(11, 0));
 
   await Future.delayed(const Duration(seconds: 2), () => "2");
-  game.clickOnLocation(Location(4, 0));
+  game.clickOnLocation(Location(11, 16));
 }
