@@ -80,9 +80,38 @@ testRoute() {
 testGame() async {
   Game game = Game();
 
+  // 蜀 pick 炮
   await Future.delayed(const Duration(seconds: 2), () => "2");
   game.clickOnLocation(Location(11, 14));
 
+  // 蜀 炮 吃 魏 马
   await Future.delayed(const Duration(seconds: 2), () => "2");
   game.clickOnLocation(Location(11, 0));
+
+  // 尝试点击上一个 蜀 炮
+  await Future.delayed(const Duration(seconds: 2), () => "2");
+  game.clickOnLocation(Location(11, 0));
+
+  // 吴 pick 兵
+  await Future.delayed(const Duration(seconds: 2), () => "2");
+  game.clickOnLocation(Location(13, 8));
+
+  // 吴 兵 前进
+  await Future.delayed(const Duration(seconds: 2), () => "2");
+  game.clickOnLocation(Location(12, 8));
+
+  // 魏 pick 兵
+  await Future.delayed(const Duration(seconds: 2), () => "2");
+  game.clickOnLocation(Location(8, 3));
+
+  // 魏 兵 前进
+  await Future.delayed(const Duration(seconds: 2), () => "2");
+  game.clickOnLocation(Location(8, 4));
+
+  // 尝试点击上一个 蜀 炮
+  await Future.delayed(const Duration(seconds: 2), () => "2");
+  game.clickOnLocation(Location(11, 0));
+
+  await Future.delayed(const Duration(seconds: 2), () => "2");
+  game.clickOnLocation(Location(4, 0));
 }

@@ -28,7 +28,7 @@ class Game {
   }
 
   clickOnLocation(Location location) {
-    final intersection = _battlefield.getIntersection(location.x, location.y);
+    final intersection = _battlefield.getIntersection(location);
     _weiControl.clickAtIntersection(intersection);
     _shuControl.clickAtIntersection(intersection);
     _wuControl.clickAtIntersection(intersection);
@@ -63,9 +63,7 @@ class Game {
       _weiControl = await _weiControl.process();
       print("control kingdom = ${_weiControl.kingdom.kingdomName}, control type = ${_weiControl.toString()}");
       if (_weiControl is Submit) {
-        // todo 判断吃子等逻辑
-        // 切换到下一位
-        _turnToNextKingdom();
+        _submit(_weiControl);
       }
     }
   }
@@ -76,9 +74,7 @@ class Game {
       _shuControl = await _shuControl.process();
       print("control kingdom = ${_shuControl.kingdom.kingdomName}, control type = ${_shuControl.toString()}");
       if (_shuControl is Submit) {
-        // todo 判断吃子等逻辑
-        // 切换到下一位
-        _turnToNextKingdom();
+        _submit(_shuControl);
       }
     }
   }
@@ -89,11 +85,27 @@ class Game {
       _wuControl = await _wuControl.process();
       print("control kingdom = ${_wuControl.kingdom.kingdomName}, control type = ${_wuControl.toString()}");
       if (_wuControl is Submit) {
-        // todo 判断吃子等逻辑
-        // 切换到下一位
-        _turnToNextKingdom();
+        _submit(_wuControl);
       }
     }
+  }
+
+  _submit(Submit submit) {
+    final winner = submit.from.role;
+    final loser = submit.to.role;
+
+    if (loser != null) {
+      loser.died = true;
+    }
+
+    // 新位置更新
+    winner.location = submit.to.toLocation();
+    submit.to.role = winner;
+
+    // 旧位置更新
+    submit.from.role = null;
+
+    _turnToNextKingdom();
   }
 
   _turnToNextKingdom() {

@@ -12,13 +12,15 @@ part 'role_guard.dart';
 part 'role_cannon.dart';
 
 abstract class Role {
+  final acceptableBlockCount = 0;
+
   /// 可以是文字，也可以是图片资源
   /// 取决于显示实现方案
   var res;
 
   Kingdom kingdom;
   Location location;
-  final acceptableBlockCount = 0;
+  bool died;
 
   bool _canMoveTo(Location targetLocation);
 

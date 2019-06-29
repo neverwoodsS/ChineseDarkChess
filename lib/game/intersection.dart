@@ -1,5 +1,6 @@
 import 'package:ttk_chess/role/role.dart';
 import 'battlefield.dart';
+import 'location.dart';
 
 class Intersection {
 
@@ -13,4 +14,6 @@ class Intersection {
   Intersection(this.x, this.y) {
     desert = (x < _MIN || x > _MAX) && (y < _MIN || y > _MAX);
   }
+
+  toLocation() => Location(x, y);
 }

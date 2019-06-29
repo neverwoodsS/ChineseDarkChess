@@ -25,7 +25,7 @@ class Battlefield {
     return result;
   }
 
-  Intersection getIntersection(int x, int y) {
-    return _sections[x][y];
+  Intersection getIntersection(Location location) {
+    return _sections[location.x][location.y];
   }
 }

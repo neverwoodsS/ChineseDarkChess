@@ -15,7 +15,7 @@ class Waiting extends Control {
   @override
   Future<Control> process() async {
     while (_lock) {
-      await Future.delayed(const Duration(seconds: 2), () => "2");
+      await Future.delayed(const Duration(milliseconds: 10), () => "10");
     }
     return Thinking(kingdom);
   }
