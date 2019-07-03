@@ -23,12 +23,12 @@ class Shu extends Kingdom {
       Minister()..location = Location(06, 16)..kingdom = this,
       Guard()..location = Location(09, 16)..kingdom = this,
       Guard()..location = Location(07, 16)..kingdom = this,
-      King(kingdomName)..location = Location(08, 16),
+      King(kingdomName)..location = Location(08, 16)..kingdom = this,
     ];
   }
 
   @override String kingdomName = "蜀";
-  @override int color = 0x00ff00;
+  @override Color color = Color(0xff00ff00);
 
   @override
   bool canRoleMoveTo(Role role, Location location) {

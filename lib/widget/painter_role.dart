@@ -26,6 +26,7 @@ class RolePainter {
       final x = width * location.x / count;
       final y = height * location.y / count;
 
+      _paint.color = role.kingdom.color;
       canvas.drawCircle(Offset(x, y), roleSize, _paint);
     });
   }
