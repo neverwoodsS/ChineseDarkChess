@@ -6,7 +6,7 @@ import 'location.dart';
 
 class Game {
 
-  Battlefield _battlefield;
+  Battlefield battlefield;
 
   Kingdom theMovingKingdom;
 
@@ -29,13 +29,13 @@ class Game {
   }
 
   clickOnLocation(Location location) {
-    final intersection = _battlefield.getIntersection(location);
+    final intersection = battlefield.getIntersection(location);
     _weiControl.clickAtIntersection(intersection);
     _shuControl.clickAtIntersection(intersection);
     _wuControl.clickAtIntersection(intersection);
   }
 
-  int countBlockOfRoute(List<Location> route) => _battlefield.countBlockOfRoute(route);
+  int countBlockOfRoute(List<Location> route) => battlefield.countBlockOfRoute(route);
 
   _initKingdoms() {
     _wei = Wei()..game = this;
@@ -46,10 +46,10 @@ class Game {
   }
 
   _initBattlefield() {
-    _battlefield = Battlefield();
-    _battlefield.addRoles(_wei.roles);
-    _battlefield.addRoles(_shu.roles);
-    _battlefield.addRoles(_wu.roles);
+    battlefield = Battlefield();
+    battlefield.addRoles(_wei.roles);
+    battlefield.addRoles(_shu.roles);
+    battlefield.addRoles(_wu.roles);
   }
 
   _initControls() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ttk_chess/widget/widget_game.dart';
 
 main() async {
   await SystemChrome.setPreferredOrientations([
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: GamePage(),
+//      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

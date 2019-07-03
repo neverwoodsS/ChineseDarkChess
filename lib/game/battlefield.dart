@@ -28,4 +28,18 @@ class Battlefield {
   Intersection getIntersection(Location location) {
     return _sections[location.x][location.y];
   }
+
+  List<Role> getRoles() {
+    final result = List<Role>();
+
+    _sections.forEach((list) {
+      list.forEach((intersection) {
+        if (intersection.role != null) {
+          result.add(intersection.role);
+        }
+      });
+    });
+
+    return result;
+  }
 }

@@ -7,7 +7,8 @@ import 'package:ttk_chess/role/role.dart';
 
 void main() {
 //  testRoute();
-  testGame();
+//  testGame();
+  testOffset();
 }
 
 testRoute() {
@@ -114,4 +115,14 @@ testGame() async {
 
   await Future.delayed(const Duration(seconds: 2), () => "2");
   game.clickOnLocation(Location(11, 16));
+}
+
+testOffset() {
+  print(3.4.floor());
+  print(3.4.round());
+  print(3.4.ceil());
+
+  print(3.6.floor());
+  print(3.6.round());
+  print(3.6.ceil());
 }
