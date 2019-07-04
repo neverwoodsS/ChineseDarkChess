@@ -8,6 +8,7 @@ main() async {
     DeviceOrientation.landscapeRight,
   ]);
 
+  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
   runApp(MyApp());
 }
 

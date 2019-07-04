@@ -25,8 +25,13 @@ class Picked extends Control {
        final route = _pickedIntersection.role.routeTo(_clickedIntersection.toLocation());
        if (route == null)
          return _thinking();
-       else
-         return _submit();
+       else {
+         final routeBlockCount = game.countBlockOfRoute(route);
+         if (routeBlockCount == 0)
+           return _submit();
+         else
+           return _thinking();
+       }
     } else if (_clickedIntersection.role.kingdom == _pickedIntersection.role.kingdom) {
       return _thinking();
     } else {

@@ -43,9 +43,17 @@ class GamePainter extends CustomPainter {
     final width = height;
     final count = Battlefield.SIZE;
 
-    final x = offset.dx / (width / count);
-    final y = offset.dy / (height / count);
+    final x = offset.dx / (width / (count - 1));
+    final y = offset.dy / (height / (count - 1));
 
-    return Location(x.round(), y.round());
+    var resultX = x.round();
+    var resultY = y.round();
+
+    if (resultX < 0) resultX = 0;
+    if (resultX > count - 1) resultX = count - 1;
+    if (resultY < 0) resultY = 0;
+    if (resultY > count - 1) resultY = count - 1;
+
+    return Location(resultX, resultY);
   }
 }

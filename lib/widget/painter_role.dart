@@ -23,8 +23,8 @@ class RolePainter {
     final roles = _battlefield.getRoles();
     roles.forEach((role) {
       final location = role.location;
-      final x = width * location.x / count;
-      final y = height * location.y / count;
+      final x = width * location.x / (count - 1);
+      final y = height * location.y / (count - 1);
 
       _paint.color = role.kingdom.color;
       canvas.drawCircle(Offset(x, y), roleSize, _paint);

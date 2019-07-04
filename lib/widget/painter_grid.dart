@@ -18,11 +18,11 @@ class GridPainter {
     final width = height;
     final count = Battlefield.SIZE;
 
-    for (var i = 0; i <= count; i++) {
-      final y = height * i / count;
+    for (var i = 0; i < count; i++) {
+      final y = height * i / (count - 1);
       canvas.drawLine(Offset(0, y), Offset(width, y), _paint);
 
-      final x = width * i / count;
+      final x = width * i / (count - 1);
       canvas.drawLine(Offset(x, 0), Offset(x, height), _paint);
     }
   }
