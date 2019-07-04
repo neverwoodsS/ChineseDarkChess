@@ -1,5 +1,6 @@
 library painter;
 
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ttk_chess/game/battlefield.dart';

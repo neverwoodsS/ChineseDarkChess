@@ -28,6 +28,21 @@ class RolePainter {
 
       _paint.color = role.kingdom.color;
       canvas.drawCircle(Offset(x, y), roleSize, _paint);
+
+      ui.ParagraphBuilder pb = ui.ParagraphBuilder(ui.ParagraphStyle(
+        textAlign: TextAlign.center,
+        fontWeight: FontWeight.w300,
+        fontStyle: FontStyle.normal,
+        fontSize: 10,
+      ));
+
+      pb.addText(role.res.toString());
+      pb.pushStyle(ui.TextStyle(color: Color(0xffffffff)));
+
+      ui.ParagraphConstraints pc = ui.ParagraphConstraints(width: roleSize * 2);
+
+      final paragraph = pb.build()..layout(pc);
+      canvas.drawParagraph(paragraph, Offset(x - roleSize, y - paragraph.height / 2));
     });
   }
 }
