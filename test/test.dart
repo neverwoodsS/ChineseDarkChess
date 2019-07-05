@@ -79,7 +79,7 @@ testRoute() {
 }
 
 testGame() async {
-  Game game = Game();
+  Game game = Game(null);
 
   // 蜀 pick 炮
   await Future.delayed(const Duration(seconds: 2), () => "2");

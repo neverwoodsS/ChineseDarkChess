@@ -20,7 +20,7 @@ class _GameState extends State<GamePage> {
   @override
   void initState() {
     super.initState();
-    _game = Game();
+    _game = Game(this);
   }
 
   @override
@@ -49,6 +49,6 @@ class _GameState extends State<GamePage> {
 
     _game.clickOnLocation(location);
 
-    setState(() {});
+//    setState(() {});
   }
 }

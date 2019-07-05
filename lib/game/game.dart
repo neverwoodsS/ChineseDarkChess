@@ -1,38 +1,37 @@
+import 'package:flutter/widgets.dart';
 import 'package:ttk_chess/control/control.dart';
 import 'package:ttk_chess/kingdom/kingdom.dart';
-import 'package:ttk_chess/role/role.dart';
 import 'battlefield.dart';
 import 'location.dart';
 
 class Game {
 
-  Battlefield battlefield;
+  State state;
 
+  Battlefield battlefield;
   Kingdom theMovingKingdom;
 
   Kingdom _wei;
   Kingdom _shu;
   Kingdom _wu;
 
-  Control _weiControl;
-  Control _shuControl;
-  Control _wuControl;
+  Map<Kingdom, Control> _controls = {};
 
-  Game() {
+  Game(this.state) {
     _initKingdoms();
     _initBattlefield();
     _initControls();
 
-    _startWeiControl();
-    _startShuControl();
-    _startWuControl();
+    _startControl(_wei);
+    _startControl(_shu);
+    _startControl(_wu);
   }
 
   clickOnLocation(Location location) {
     final intersection = battlefield.getIntersection(location);
-    _weiControl.clickAtIntersection(intersection);
-    _shuControl.clickAtIntersection(intersection);
-    _wuControl.clickAtIntersection(intersection);
+    _controls.forEach((kingdom, control) {
+      control.clickAtIntersection(intersection);
+    });
   }
 
   int countBlockOfRoute(List<Location> route) => battlefield.countBlockOfRoute(route);
@@ -53,41 +52,25 @@ class Game {
   }
 
   _initControls() {
-    _weiControl = Waiting(_wei, this);
-    _shuControl = Waiting(_shu, this);
-    _wuControl = Waiting(_wu, this);
+    _controls[_wei] = Waiting(_wei, this);
+    _controls[_shu] = Waiting(_shu, this);
+    _controls[_wu] = Waiting(_wu, this);
   }
 
-  _startWeiControl() async {
-    _weiControl.movingKingdomChange(theMovingKingdom);
+  _startControl(Kingdom kingdom) async {
+    _controls[kingdom]?.movingKingdomChange(theMovingKingdom);
     while (true) {
-      _weiControl = await _weiControl.process();
-      print("control kingdom = ${_weiControl.kingdom.kingdomName}, control type = ${_weiControl.toString()}");
-      if (_weiControl is Submit) {
-        _submit(_weiControl);
-      }
-    }
-  }
+      final futureControl = await _controls[kingdom].process();
+      _controls[kingdom] = futureControl;
 
-  _startShuControl() async {
-    _shuControl.movingKingdomChange(theMovingKingdom);
-    while (true) {
-      _shuControl = await _shuControl.process();
-      print("control kingdom = ${_shuControl.kingdom.kingdomName}, control type = ${_shuControl.toString()}");
-      if (_shuControl is Submit) {
-        _submit(_shuControl);
+      print("control kingdom = ${kingdom.kingdomName}, control type = ${futureControl.toString()}");
+      if (_controls[kingdom] is Submit) {
+        _submit(futureControl);
       }
-    }
-  }
 
-  _startWuControl() async {
-    _wuControl.movingKingdomChange(theMovingKingdom);
-    while (true) {
-      _wuControl = await _wuControl.process();
-      print("control kingdom = ${_wuControl.kingdom.kingdomName}, control type = ${_wuControl.toString()}");
-      if (_wuControl is Submit) {
-        _submit(_wuControl);
-      }
+      // update widget
+      // ignore: invalid_use_of_protected_member
+      state?.setState(() {});
     }
   }
 
@@ -118,8 +101,8 @@ class Game {
       theMovingKingdom = _wei;
     }
 
-    _weiControl.movingKingdomChange(theMovingKingdom);
-    _shuControl.movingKingdomChange(theMovingKingdom);
-    _wuControl.movingKingdomChange(theMovingKingdom);
+    _controls.forEach((kingdom, control) {
+      control.movingKingdomChange(theMovingKingdom);
+    });
   }
 }
