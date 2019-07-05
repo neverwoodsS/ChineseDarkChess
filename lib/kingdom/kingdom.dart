@@ -22,9 +22,8 @@ abstract class Kingdom {
 
     // 目标位置没有棋子
     // 一定需要路径没有阻碍
-    if (targetRole == null) {
+    if (targetRole == null)
       return blockCount == 0;
-    }
 
     // 检查目标位置棋子所属势力
     // 如果是己方、盟友则不可移动
