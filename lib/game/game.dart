@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:ttk_chess/control/control.dart';
 import 'package:ttk_chess/kingdom/kingdom.dart';
 import 'battlefield.dart';
@@ -6,7 +5,7 @@ import 'location.dart';
 
 class Game {
 
-  State state;
+  var state;
 
   Battlefield battlefield;
   Kingdom theMovingKingdom;
@@ -68,8 +67,6 @@ class Game {
         _submit(futureControl);
       }
 
-      // update widget
-      // ignore: invalid_use_of_protected_member
       state?.setState(() {});
     }
   }

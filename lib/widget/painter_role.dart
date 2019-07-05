@@ -9,9 +9,9 @@ class RolePainter {
 
   RolePainter(this._battlefield) {
     _paint = Paint()
-      ..color = Colors.deepOrange //画笔颜色
-      ..strokeCap = StrokeCap.round //画笔笔触类型
-      ..isAntiAlias = true //是否启动抗锯齿
+      ..color = Colors.deepOrange // 画笔颜色
+      ..strokeCap = StrokeCap.round // 画笔笔触类型
+      ..isAntiAlias = true // 是否启动抗锯齿
     ;
   }
 
@@ -26,7 +26,7 @@ class RolePainter {
       final x = width * location.x / (count - 1);
       final y = height * location.y / (count - 1);
 
-      _paint.color = role.kingdom.color;
+      _paint.color = Color(role.kingdom.color);
       canvas.drawCircle(Offset(x, y), roleSize, _paint);
 
       ui.ParagraphBuilder pb = ui.ParagraphBuilder(ui.ParagraphStyle(

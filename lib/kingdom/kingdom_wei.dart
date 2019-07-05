@@ -28,5 +28,5 @@ class Wei extends Kingdom {
   }
 
   @override String kingdomName = "魏";
-  @override Color color = Color(0xffff0000);
+  @override int color = 0xffff0000;
 }

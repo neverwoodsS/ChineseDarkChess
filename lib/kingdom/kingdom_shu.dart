@@ -28,5 +28,5 @@ class Shu extends Kingdom {
   }
 
   @override String kingdomName = "蜀";
-  @override Color color = Color(0xff00ff00);
+  @override int color = 0xff00ff00;
 }
