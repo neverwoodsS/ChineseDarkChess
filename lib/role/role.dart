@@ -28,4 +28,15 @@ abstract class Role {
   /// 非 null 则可达，但仍需其他检查
   /// 例如终点是否有友军，相士兵的移动限制等
   List<Location> routeTo(Location targetLocation);
+
+  bool canMoveTo(Location location, Role role) {
+    final route = routeTo(location);
+
+    // 路径不可达直接判定失败
+    if (route == null)
+      return false;
+
+    // 路径可达，交由 kingdom 判断
+    return kingdom.canRoleMoveTo(this, role, location, route);
+  }
 }

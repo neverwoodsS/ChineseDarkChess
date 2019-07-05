@@ -1,6 +1,6 @@
 part of role;
 
-class Cannon extends  Rook {
+class Cannon extends Rook {
   @override
   get res => "炮";
 

@@ -29,9 +29,4 @@ class Wu extends Kingdom {
 
   @override String kingdomName = "吴";
   @override Color color = Color(0xff0000ff);
-
-  @override
-  bool canRoleMoveTo(Role role, Location location) {
-    return role.routeTo(location) != null;
-  }
 }
