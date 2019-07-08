@@ -5,7 +5,9 @@ class Picked extends Control {
   Intersection _clickedIntersection;
 
   Picked(Kingdom kingdom, Game game, this._pickedIntersection)
-      : super(kingdom, game);
+      : super(kingdom, game) {
+    _pickedIntersection.picked = true;
+  }
 
   @override
   void clickAtIntersection(Intersection intersection) {
@@ -27,7 +29,13 @@ class Picked extends Control {
         : _thinking();
   }
 
-  _submit() => Submit(kingdom, game, _pickedIntersection, _clickedIntersection);
+  _submit() {
+    _pickedIntersection.picked = false;
+    return Submit(kingdom, game, _pickedIntersection, _clickedIntersection);
+  }
 
-  _thinking() => Thinking(kingdom, game);
+  _thinking() {
+    _pickedIntersection.picked = false;
+    return Thinking(kingdom, game);
+  }
 }

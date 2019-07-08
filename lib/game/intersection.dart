@@ -10,6 +10,7 @@ class Intersection {
   final int x, y;
   Role role;
   bool desert;
+  bool picked;
 
   Intersection(this.x, this.y) {
     desert = (x < _MIN || x > _MAX) && (y < _MIN || y > _MAX);

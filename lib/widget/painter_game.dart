@@ -7,20 +7,20 @@ import 'package:ttk_chess/game/battlefield.dart';
 import 'package:ttk_chess/game/location.dart';
 
 part 'painter_grid.dart';
-part 'painter_role.dart';
+part 'painter_intersection.dart';
 
 class GamePainter extends CustomPainter {
 
   Battlefield _battleField;
   GridPainter _gridPainter;
-  RolePainter _rolePainter;
+  IntersectionPainter _rolePainter;
 
   Size _size;
 
   GamePainter(Battlefield battlefield) {
     this._battleField = battlefield;
     _gridPainter = GridPainter(battlefield);
-    _rolePainter = RolePainter(battlefield);
+    _rolePainter = IntersectionPainter(battlefield);
   }
 
   @override

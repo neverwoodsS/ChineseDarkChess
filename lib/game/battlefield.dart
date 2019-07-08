@@ -29,13 +29,13 @@ class Battlefield {
     return _sections[location.x][location.y];
   }
 
-  List<Role> getRoles() {
-    final result = List<Role>();
+  List<Intersection> getIntersectionsWithRole() {
+    final result = List<Intersection>();
 
     _sections.forEach((list) {
       list.forEach((intersection) {
         if (intersection.role != null) {
-          result.add(intersection.role);
+          result.add(intersection);
         }
       });
     });
