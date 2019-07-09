@@ -29,4 +29,20 @@ class Wu extends Kingdom {
 
   @override String kingdomName = "吴";
   @override int color = 0xff0000ff;
+
+  @override
+  bool canRoleMoveTo(Role startRole, Role targetRole, Location targetLocation, List<Location> route) {
+    final superResult = super.canRoleMoveTo(startRole, targetRole, targetLocation, route);
+
+    if (superResult) {
+      // 相不能离开本土
+      if (startRole is Minister && targetLocation.x < 12)
+        return false;
+      // 士、王不能离开九宫格
+      if ((startRole is Guard || startRole is King) && (targetLocation.x < 14 || targetLocation.y < 7 || targetLocation.y > 9))
+        return false;
+    } else return false;
+
+    return true;
+  }
 }
