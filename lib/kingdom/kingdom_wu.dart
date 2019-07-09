@@ -35,11 +35,14 @@ class Wu extends Kingdom {
     final superResult = super.canRoleMoveTo(startRole, targetRole, targetLocation, route);
 
     if (superResult) {
-      // 相不能离开本土
+      // 相不能离开国境
       if (startRole is Minister && targetLocation.x < 12)
         return false;
       // 士、王不能离开九宫格
       if ((startRole is Guard || startRole is King) && (targetLocation.x < 14 || targetLocation.y < 7 || targetLocation.y > 9))
+        return false;
+      // 兵在国境线及国境内不能后退
+      if (startRole is Soldier && (startRole.location.x >= 12 && targetLocation.x > startRole.location.x))
         return false;
     } else return false;
 

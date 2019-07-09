@@ -41,6 +41,9 @@ class Wei extends Kingdom {
       // 士、王不能离开九宫格
       if ((startRole is Guard || startRole is King) && (targetLocation.y > 2 || targetLocation.x < 7 || targetLocation.x > 9))
         return false;
+      // 兵在国境线及国境内不能后退
+      if (startRole is Soldier && (startRole.location.y <= 4 && targetLocation.y < startRole.location.y))
+        return false;
     } else return false;
 
     return true;
