@@ -1,4 +1,5 @@
 import 'package:ttk_chess/control/control.dart';
+import 'package:ttk_chess/game/watcher.dart';
 import 'package:ttk_chess/kingdom/kingdom.dart';
 import 'battlefield.dart';
 import 'location.dart';
@@ -14,11 +15,14 @@ class Game {
   Kingdom _shu;
   Kingdom _wu;
 
+  Watcher _watcher;
+
   Map<Kingdom, Control> _controls = {};
 
   Game(this.state) {
     _initKingdoms();
     _initBattlefield();
+    _initWatcher();
     _initControls();
 
     _startControl(_wei);
@@ -39,8 +43,6 @@ class Game {
     _wei = Wei()..game = this;
     _shu = Shu()..game = this;
     _wu = Wu()..game = this;
-
-    theMovingKingdom = _shu;
   }
 
   _initBattlefield() {
@@ -48,6 +50,11 @@ class Game {
     battlefield.addRoles(_wei.roles);
     battlefield.addRoles(_shu.roles);
     battlefield.addRoles(_wu.roles);
+  }
+
+  _initWatcher() {
+    _watcher = Watcher(_wu, _wei, _shu);
+    theMovingKingdom = _watcher.currentKingdom;
   }
 
   _initControls() {
@@ -58,11 +65,11 @@ class Game {
 
   _startControl(Kingdom kingdom) async {
     _controls[kingdom]?.movingKingdomChange(theMovingKingdom);
+
     while (true) {
       final futureControl = await _controls[kingdom].process();
       _controls[kingdom] = futureControl;
 
-      print("control kingdom = ${kingdom.kingdomName}, control type = ${futureControl.toString()}");
       if (_controls[kingdom] is Submit) {
         _submit(futureControl);
       }
@@ -86,17 +93,14 @@ class Game {
     // 旧位置更新
     submit.from.role = null;
 
+    // 通知 watcher 进行逻辑处理
+    _watcher.work();
+
     _turnToNextKingdom();
   }
 
   _turnToNextKingdom() {
-    if (theMovingKingdom == _wei) {
-      theMovingKingdom = _shu;
-    } else if (theMovingKingdom == _shu) {
-      theMovingKingdom = _wu;
-    } else if (theMovingKingdom == _wu) {
-      theMovingKingdom = _wei;
-    }
+    theMovingKingdom = _watcher.currentKingdom;
 
     _controls.forEach((kingdom, control) {
       control.movingKingdomChange(theMovingKingdom);

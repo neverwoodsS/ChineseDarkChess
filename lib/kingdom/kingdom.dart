@@ -15,6 +15,9 @@ abstract class Kingdom {
   List<Role> roles;
 
   Kingdom ally;
+  Kingdom next;
+
+  King get king => roles.firstWhere((role) { return role is King; });
 
   bool canRoleMoveTo(Role startRole, Role targetRole, Location targetLocation, List<Location> route) {
     final blockCount = game.countBlockOfRoute(route);
