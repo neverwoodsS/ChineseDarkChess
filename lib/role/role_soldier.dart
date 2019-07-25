@@ -6,8 +6,8 @@ class Soldier extends Role {
 
   @override
   bool _canMoveTo(Location targetLocation) {
-    var distance = targetLocation.x - location.x + targetLocation.y - location.y;
-    return distance.abs() == 1;
+    var distance = (targetLocation.x - location.x).abs() + (targetLocation.y - location.y).abs();
+    return distance == 1;
   }
 
   @override
