@@ -12,7 +12,7 @@ class Picked extends Control {
   @override
   void clickAtIntersection(Intersection intersection) {
     _clickedIntersection = intersection;
-    _lock = false;
+    _completer.complete();
   }
 
   @override
@@ -20,10 +20,7 @@ class Picked extends Control {
 
   @override
   Future<Control> process() async {
-    while (_lock) {
-      await _delay();
-    }
-
+    await _completer.future;
     return _pickedIntersection.role.canMoveTo(_clickedIntersection.toLocation(), _clickedIntersection.role)
         ? _submit()
         : _thinking();

@@ -11,7 +11,6 @@ part 'control_picked.dart';
 part 'control_submit.dart';
 
 abstract class Control {
-  bool _lock = true;
   Kingdom kingdom;
   Game game;
   Control(this.kingdom, this.game);
@@ -20,5 +19,5 @@ abstract class Control {
   void movingKingdomChange(Kingdom movingKingdom);
   Future<Control> process();
 
-  _delay() => Future.delayed(const Duration(milliseconds: 10), () => "10");
+  Completer _completer = Completer();
 }

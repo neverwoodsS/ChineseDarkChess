@@ -8,8 +8,9 @@ class Thinking extends Control {
   @override
   void clickAtIntersection(Intersection intersection) {
     _clickedIntersection = intersection;
-    if (intersection.role == null) _lock = true;
-    else _lock = kingdom != intersection.role.kingdom;
+    if (intersection.role != null && kingdom == intersection.role.kingdom) {
+      _completer.complete();
+    }
   }
 
   @override
@@ -17,9 +18,7 @@ class Thinking extends Control {
 
   @override
   Future<Control> process() async {
-    while (_lock) {
-      await _delay();
-    }
+    await _completer.future;
     return Picked(kingdom, game, _clickedIntersection);
   }
 }

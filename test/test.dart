@@ -8,7 +8,8 @@ import 'package:ttk_chess/role/role.dart';
 void main() {
 //  testRoute();
 //  testGame();
-  testOffset();
+//  testOffset();
+  testCompleter();
 }
 
 testRoute() {
@@ -125,4 +126,21 @@ testOffset() {
   print(3.6.floor());
   print(3.6.round());
   print(3.6.ceil());
+}
+
+testCompleter() async {
+  Completer completer = Completer();
+  testAsync(completer);
+
+  await Future.delayed(Duration(seconds: 2));
+  completer.complete();
+
+  await Future.delayed(Duration(seconds: 1));
+  completer.complete();
+}
+
+testAsync(Completer completer) async {
+  print('start await');
+  await completer.future;
+  print('end await');
 }

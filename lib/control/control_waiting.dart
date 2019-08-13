@@ -9,14 +9,14 @@ class Waiting extends Control {
 
   @override
   void movingKingdomChange(Kingdom movingKingdom) {
-    _lock = kingdom != movingKingdom;
+    if (kingdom == movingKingdom) {
+      _completer.complete();
+    }
   }
 
   @override
   Future<Control> process() async {
-    while (_lock) {
-      await _delay();
-    }
+    await _completer.future;
     return Thinking(kingdom, game);
   }
 }
